@@ -1,0 +1,22 @@
+flutter_native_splash:
+
+  # Use either color or background_image, but not both.
+  # Specify your image for the splash screen (for both light and dark mode).
+  color: "#000000"
+  image: assets/background.png
+
+#  Define colors and images for dark mode (optional).
+#  image_dark: assets/background.png
+
+  # Disable splash screen on web.
+  web: false
+  android: true
+  ios: true
+  android12: true
+
+  # Position the splash image in the center of the screen.
+  android_gravity: center
+  ios_content_mode: center
+
+  # Hide the notification bar.
+  fullscreen: true
