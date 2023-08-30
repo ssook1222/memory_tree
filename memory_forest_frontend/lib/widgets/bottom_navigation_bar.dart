@@ -17,13 +17,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: (index) {
         onTap(index); // 전달된 onTap 콜백 함수 호출
-
-        // 선택한 아이템에 해당하는 화면을 Navigator 스택에 push
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (BuildContext context) => screens[index],
-          ),
-        );
       },
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.green.shade800,
