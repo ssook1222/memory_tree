@@ -30,18 +30,26 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    HomeScreen(),
-    ChatScreen(),
-    MatchmakingScreen(),
-    WordGameScreen(),
-  ];
-
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
+
+  final List<Widget> _pages = [
+    HomeScreen(
+      currentIndex: 0
+    ),
+    ChatScreen(
+      currentIndex: 1
+    ),
+    MatchMakingScreen(
+      currentIndex: 2
+    ),
+    WordGameScreen(
+      currentIndex: 3
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBarWidget(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
+        screens: _pages,
       ),
     );
   }
