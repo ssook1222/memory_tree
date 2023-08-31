@@ -42,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Text(
-                  '\n${name}님, \n오늘의 하루는 어떠셨나요?\n',
+                  '${name}님, \n오늘의 하루는 어떠셨나요?\n',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Row(
@@ -74,17 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.green.shade100,
                   thickness: 1,
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 10),
                 Text(
-                  '\n놀라워요!',
+                  '놀라워요!',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 30), // 문장 사이 간격 추가
+                SizedBox(height: 20), // 문장 사이 간격 추가
                 Text(
                   '저번 주보다 ',
                   style: TextStyle(fontSize: 18),
                 ),
-                SizedBox(height: 10), // 문장 사이 간격 추가
+                SizedBox(height: 5), // 문장 사이 간격 추가
                 Row(
                     children: [
                       Text(
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ]
                 ),
-                SizedBox(height: 10), // 문장 사이 간격 추가
+                SizedBox(height: 5), // 문장 사이 간격 추가
 
                 Text(
                   '더 많이 말하셨어요.',
