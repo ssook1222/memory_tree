@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:memory_tree_frontend/widgets/app_bar_widget.dart';
-import 'package:memory_tree_frontend/widgets/bottom_navigation_bar.dart';
 
 class WordGameScreen extends StatelessWidget {
   final int currentIndex;
