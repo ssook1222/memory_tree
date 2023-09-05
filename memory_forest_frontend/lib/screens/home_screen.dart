@@ -28,10 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: '',
-        onProfilePressed: () {
-          // 프로필 화면으로 이동
-        },
+        title: ''
       ),
       body: Center(
         child: Card(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:memory_tree_frontend/screens/profile.dart'; // 프로필 화면 파일을 import
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback onProfilePressed;
 
   MyAppBar({
     required this.title,
-    required this.onProfilePressed,
   });
 
   @override
@@ -54,7 +53,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.person,
             color: Colors.white,
           ),
-          onPressed: onProfilePressed,
+          onPressed: () {
+            // 프로필 버튼이 눌렸을 때 profile.dart로 이동
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()), // ProfileScreen으로 이동
+            );
+          },
         ),
       ],
       leading: IconButton(
