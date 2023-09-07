@@ -14,9 +14,7 @@ class WordGameScreen extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(
         title: '',
-        onProfilePressed: () {
-          // 프로필 화면으로 이동
-        },
+        onProfilePressed: 'word',
       ),
       body: Center(
         child: CustomCard(
