@@ -13,7 +13,8 @@ class WordGameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: ''
+        title: '',
+        onProfilePressed: 'word',
       ),
       body: Center(
         child: CustomCard(

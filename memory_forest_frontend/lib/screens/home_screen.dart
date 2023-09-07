@@ -28,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: ''
+        title: '',
+        onProfilePressed: 'home'
       ),
       body: Center(
         child: Card(

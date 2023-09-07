@@ -4,9 +4,11 @@ import 'package:memory_tree_frontend/screens/profile.dart'; // 프로필 화면 
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final String onProfilePressed; // 프로필 버튼 콜백 함수 추가
 
   MyAppBar({
     required this.title,
+    required this.onProfilePressed,
   });
 
   @override
@@ -44,23 +46,24 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
       actions: [
-        IconButton(
-          icon: Icon(
-            Icons.person,
-            color: Colors.white,
+        if (onProfilePressed != 'null') // 프로필 버튼이 null이 아닐 때에만, 즉 프로필 화면만 이동 불가하게 로직 수정
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()), // ProfileScreen으로 이동
+              );
+            },
           ),
-          onPressed: () {
-            // 프로필 버튼이 눌렸을 때 profile.dart로 이동
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()), // ProfileScreen으로 이동
-            );
-          },
-        ),
       ],
       leading: IconButton(
         icon: Icon(
@@ -68,7 +71,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.white,
         ),
         onPressed: () {
-          handleBackOrExit(context); // 수정된 콜백 함수 사용
+          handleBackOrExit(context);
         },
       ),
     );

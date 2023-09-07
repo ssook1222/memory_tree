@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_tree_frontend/widgets/app_bar_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String name = 'ssook';
@@ -8,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(
         title: '',
-        onProfilePressed: null,
+        onProfilePressed: 'null',
       ),
       body: Container(
         alignment: Alignment.center,
@@ -76,76 +77,6 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final VoidCallback? onProfilePressed;
-
-  MyAppBar({
-    required this.title,
-    required this.onProfilePressed,
-  });
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-
-  void handleBackOrExit(BuildContext context) {
-    if (Navigator.of(context).canPop()) {
-      Navigator.of(context).pop();
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('앱 종료'),
-            content: Text('앱을 종료하시겠습니까?'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('취소'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('확인'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Text(title),
-      actions: onProfilePressed != null
-          ? [
-        IconButton(
-          icon: Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
-          onPressed: onProfilePressed,
-        ),
-      ]
-          : null,
-      leading: IconButton(
-        icon: Icon(
-          Icons.arrow_circle_left,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          handleBackOrExit(context);
-        },
       ),
     );
   }

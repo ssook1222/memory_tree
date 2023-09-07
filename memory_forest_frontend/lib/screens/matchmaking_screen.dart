@@ -17,7 +17,8 @@ class MatchMakingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: ''
+        title: '',
+        onProfilePressed: 'match',
       ),
       body: Center(
         child: CustomCard(
