@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:memory_tree_frontend/widgets/app_bar_widget.dart';
+import 'package:memory_tree_frontend/widgets/bar_chart_widget.dart';
+import 'package:memory_tree_frontend/widgets/used_word_ranking.dart';
+import 'package:memory_tree_frontend/widgets/game_success_rate.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String name = 'ssook';
+  int thisMonthCount = 188;
+  int lastMonthCount = 150;
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +59,33 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Container(
                           color: Colors.green, // 녹색 배경
-                          width: MediaQuery.of(context).size.width - 120, // 화면 너비 - 100
+                          width: MediaQuery.of(context).size.width - 120, // 화면 너비 - 120으로 수정
                           height: 1.0, // 1px 높이
                         ),
                       ],
                     ),
                     SizedBox(height: 10.0), // 여백 추가
-                    Text(
-                      '아래는 스크롤 여부를 확인하기 위한 테스트 코드입니다.',
-                      style: TextStyle(fontSize: 14.0),
+                    // contents
+                    BarChartWidget(
+                      thisMonthCount: thisMonthCount,
+                      lastMonthCount: lastMonthCount,
                     ),
-                    SizedBox(height: 10.0), // 여백 추가
-                    for (int i = 1; i < 26; i++)
-                      Text(
-                        'Profile Info $i',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    SizedBox(height: 10.0), // 아래 여백 추가
-                  ],
+                    SizedBox(height: 30.0), // 여백 추가
+                    UsedWordRankingWidget(),
+                    SizedBox(height: 30.0), // 여백 추가
+                    Text(
+                      '끝말잇기 성공률',
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center, // 원을 중앙으로 정렬
+                      children: [
+                        GameSuccessRateWidget(),
+                      ],
+                    ),
+                    SizedBox(height: 30.0),
+                  ], // 이 부분 잘못된 괄호 수정
                 ),
               ),
             ),
