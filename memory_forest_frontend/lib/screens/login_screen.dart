@@ -102,7 +102,7 @@ class _LogInPageState extends State<LogInPage> {
                           double.infinity,
                           0,
                         )),
-                        padding: MaterialStateProperty.all(EdgeInsets.all(4.0)),
+                        padding: MaterialStateProperty.all(EdgeInsets.all(8.0)),
                       ),
                       child: Text(
                         "로그인",
