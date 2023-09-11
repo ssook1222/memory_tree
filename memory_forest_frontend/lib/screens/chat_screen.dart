@@ -17,9 +17,7 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(
         title: '',
-        onProfilePressed: () {
-          // 프로필 화면으로 이동
-        },
+        onProfilePressed: 'chat',
       ),
       body: Center(
         child: Text('이곳에 대화하기 컨텐츠가 들어갑니다.'),
