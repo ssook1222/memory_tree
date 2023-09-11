@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_tree_frontend/screens/sign_up_screen.dart';
 import 'package:memory_tree_frontend/screens/main_screen.dart';
 
 class LogInPage extends StatefulWidget {
@@ -125,6 +126,10 @@ class _LogInPageState extends State<LogInPage> {
                           onPressed: () {
                             // 회원가입 화면으로 이동하는 네비게이션 추가
                             
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SignUpPage()), // SignUpPage로 이동
+                            );
                           },
                           child: Text("회원가입"),
                         ),
