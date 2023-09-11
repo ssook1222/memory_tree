@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory_tree_frontend/screens/main_screen.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -38,7 +39,13 @@ class _LogInPageState extends State<LogInPage> {
     }
 
     // 로그인 버튼을 눌렀을 때 실행될 코드
-    
+    // 2023-09-11 일단 로그인 버튼 눌렀을 때, 메인 화면이랑 연결되도록 수정 - SSOOK
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MainScreen(),
+      ),
+    );
   }
   @override
   Widget build(BuildContext context) {
