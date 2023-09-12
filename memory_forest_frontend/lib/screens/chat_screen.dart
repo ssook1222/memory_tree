@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:memory_tree_frontend/widgets/app_bar_widget.dart';
 import 'package:memory_tree_frontend/widgets/message_bubble.dart';
-import 'package:intl/intl.dart'; // 날짜 및 요일을 표시하기 위한 패키지
+import 'package:intl/intl.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   final int currentIndex;
-
-  final List<Map<String, String>> chatData = [
-    {'A': 'Hello'},
-    {'B': 'Hi'},
-    // 여기에 추가적인 채팅 데이터를 넣으세요.
-  ];
 
   ChatScreen({
     required this.currentIndex,
   });
 
   @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final List<Map<String, String>> chatData = [
+    {'A': 'Hello'},
+    {'B': 'Hi'},
+    // 여기에 추가적인 채팅 데이터를 넣으세요.
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    // 현재 날짜와 요일을 가져옴
     final now = DateTime.now();
-    final dateFormat = DateFormat('yyyy.MM.dd'); // 원하는 날짜 형식
-    final dayFormat = DateFormat('EEEE'); // 요일 표시 형식
+    final dateFormat = DateFormat('yyyy.MM.dd');
 
     return Scaffold(
       appBar: MyAppBar(
