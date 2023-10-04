@@ -77,12 +77,12 @@ class _LogInPageState extends State<LogInPage> {
             ),
             // 두 번째 블럭: 로그인 폼
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(16.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // 사용자 아이디 필드
                     TextField(
@@ -99,6 +99,7 @@ class _LogInPageState extends State<LogInPage> {
                       ),
                       obscureText: true, // 비밀번호를 숨김
                     ),
+                    SizedBox(height: 16.0), // 간격 추가
                     // 로그인 버튼
                     ElevatedButton(
                       onPressed: _login,
@@ -140,10 +141,10 @@ class _LogInPageState extends State<LogInPage> {
               ),
             ),
             // 마지막 빈 블럭
-            Expanded(
-              flex: 1,
-              child: Container(),
-            ),
+            // Expanded(
+            //   flex: 1,
+            //   child: Container(),
+            // ),
           ],
         ),
       ),
@@ -151,21 +152,4 @@ class _LogInPageState extends State<LogInPage> {
   }
 }
 
-// class LogInScreen extends StatelessWidget {
-//   final int currentIndex;
-
-//   LogInScreen({
-//     required this.currentIndex,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-      
-//       body: Center(
-        
-//       ),
-//     );
-//   }
-// }
 
