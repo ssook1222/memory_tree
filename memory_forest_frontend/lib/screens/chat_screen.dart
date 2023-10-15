@@ -56,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
     }
 
     final apiUrl =
-        'https://improved-adventure-6p5r669gq5c957-8000.app.github.dev/api/gpt?message=$data';
+        'https://fluffy-waffle-75jv9vw6pjphxr46-8000.app.github.dev/api/gpt?message=$data';
 
     try {
       print(apiUrl);
