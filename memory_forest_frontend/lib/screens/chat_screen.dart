@@ -22,10 +22,17 @@ class _ChatScreenState extends State<ChatScreen> {
   String _transcription = '';
   final List<Map<String, String>> chatData = [];
   bool isListening = false; // 음성 인식 중인지 여부를 나타내는 변수
+  bool isStarting = true; // 처음 시작했는 지 그 여부를 나타내는 그 변수
+
+  @override
+  void initState() {
+    super.initState();
+    // 처음 시작할 때 _sendDataToBackend1 실행
+    _sendDataToBackend1();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     final now = DateTime.now();
     final dateFormat = DateFormat('yyyy.MM.dd');
 
@@ -60,17 +67,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (isListening) {
-                  _stopListening(); // 음성 인식 종료
-                } else {
-                  _showListeningModal(); // 모달 창 표시
-                  _startListening(); // 음성 인식 시작
-                }
-              },
-              child: Text(isListening ? '음성 인식 중지' : '음성 인식 시작'),
-            ),
             Expanded(
               child: Container(
                 color: Color(0xFFB6E166).withOpacity(0.12),
@@ -80,7 +76,14 @@ class _ChatScreenState extends State<ChatScreen> {
                     final chatItem = chatData[index];
                     final sender = chatItem.keys.first;
                     final message = chatItem.values.first;
-                    return MessageBubble(sender: sender, message: message);
+                    // MessageBubble을 누르면 음성 인식 모달을 표시하도록 수정
+                    return MessageBubble(
+                      sender: sender,
+                      message: message,
+                      onPressedCallback: () {
+                        _showListeningModal(); // 이렇게 수정
+                      },
+                    );
                   },
                 ),
               ),
@@ -110,12 +113,21 @@ class _ChatScreenState extends State<ChatScreen> {
                   '음성 인식 중입니다.',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                // 음성 인식 종료 버튼
+                ElevatedButton(
+                  onPressed: () {
+                    _stopListening();
+                  },
+                  child: Text('음성 인식 종료'),
+                ),
               ],
             ),
           ),
         );
       },
     );
+    // 음성 인식을 시작
+    _startListening();
   }
 
   // 음성 인식을 시작하는 함수
@@ -128,7 +140,6 @@ class _ChatScreenState extends State<ChatScreen> {
         onResult: (result) {
           setState(() {
             _transcription = result.recognizedWords;
-            _sendDataToBackend(_transcription); // 음성 인식 결과를 백엔드로 전송
           });
         },
       );
@@ -143,31 +154,52 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() {
       isListening = false; // 음성 인식 종료 상태로 변경
     });
-    _sendDataToBackend(_transcription); // 음성 인식 결과를 백엔드로 전송
+    // 음성 인식 결과를 백엔드로 전송
+    _sendDataToBackend2(_transcription);
   }
 
   // 백엔드 API로 데이터 전송하는 함수
-  Future<void> _sendDataToBackend(String data) async {
+  Future<void> _sendDataToBackend1() async {
+    final apiUrl =
+        'https://bug-free-dollop-q457q76j654367v7-8000.app.github.dev/api/gpt/start';
+
+    try {
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        // API 응답을 문자열로 변환하여 chatItem에 추가
+        final responseData = response.toString();
+        final aiResponse = responseData;
+        chatData.add({'AI': aiResponse});
+      } else {
+        print('API 호출 실패: ${response.statusCode}');
+        chatData.add({'AI': 'API 호출 실패'});
+      }
+    } catch (e) {
+      print('API 호출 중 오류 발생: $e');
+      chatData.add({'AI': 'API 오류 발생'});
+    }
+  }
+
+  // 백엔드 API로 데이터 전송하는 함수
+  Future<void> _sendDataToBackend2(String data) async {
     // 데이터가 NULL인 경우 "안녕"으로 초기화
     if (data == null || data.isEmpty) {
       data = "안녕";
     }
 
-    final apiUrl =
+    final apiUrl2 =
         'https://bug-free-dollop-q457q76j654367v7-8000.app.github.dev/api/gpt?message=$data';
 
     try {
-      print(apiUrl);
-      final response = await http.get(Uri.parse(apiUrl));
+      final response = await http.get(Uri.parse(apiUrl2));
 
       if (response.statusCode == 200) {
         // API 응답을 문자열로 변환하여 chatItem에 추가
-        final responseData = json.decode(response.body);
-        final aiResponse = responseData['choices'][0]['text'];
+        final responseData = response.toString();
+        final aiResponse = responseData;
         chatData.add({'AI': aiResponse});
-        print(chatData);
       } else {
-        print(apiUrl);
         print('API 호출 실패: ${response.statusCode}');
         chatData.add({'AI': 'API 호출 실패'});
       }
