@@ -168,10 +168,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
       if (response.statusCode == 200) {
         // API 응답을 문자열로 변환하여 chatItem에 추가
-        final responseData = response.toString();
+        final responseData = response.body;
         final aiResponse = responseData;
         chatData.add({'AI': aiResponse});
-      } else {
+    } else {
         print('API 호출 실패: ${response.statusCode}');
         chatData.add({'AI': 'API 호출 실패'});
       }
@@ -196,7 +196,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
       if (response.statusCode == 200) {
         // API 응답을 문자열로 변환하여 chatItem에 추가
-        final responseData = response.toString();
+        final responseData = response.body;
         final aiResponse = responseData;
         chatData.add({'AI': aiResponse});
       } else {
