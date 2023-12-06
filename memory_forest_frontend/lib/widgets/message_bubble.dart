@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class MessageBubble extends StatelessWidget {
   final String sender;
   final String message;
+  final VoidCallback? onPressedCallback;
 
   MessageBubble({
     required this.sender,
     required this.message,
+    required this.onPressedCallback,
   });
 
   @override
@@ -18,12 +20,14 @@ class MessageBubble extends StatelessWidget {
             ? MainAxisAlignment.start
             : MainAxisAlignment.end,
         children: [
-          Container(
-            padding: EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              color: sender == 'A' ? Colors.white : Color(0xFF748154),
-              borderRadius: BorderRadius.circular(20.0),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: sender == 'A' ? Colors.white : Color(0xFF748154),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
             ),
+            onPressed: onPressedCallback,
             child: Text(
               message,
               style: TextStyle(
